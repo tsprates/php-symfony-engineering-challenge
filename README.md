@@ -176,11 +176,7 @@ For extra credit, you could see about parallelizing the import process so that w
 ```sh
 php bin/console doctrine:database:create
 ```
-2. *Optional*: To create the migrations (if they don't already exist) for `product`, `price` and `image` models.
-```sh
-php bin/console make:migration
-```
-And then:
+2. To run the migrations:
 ```sh
 php bin/console doctrine:migrations:migrate
 ```
@@ -190,12 +186,12 @@ php bin/console doctrine:migrations:migrate
 chmod 777 var/app.db
 ```
 
-3. To create the `csv` folder for exported CSV files.
+3. To create the `csv` folder for the exported CSV files.
 ```sh
 mkdir -p var/csv
 chmod 777 -R var/csv
 ```
-> **Note**: For the _Pushing to Marketing Partner (Extra Credit)_ the exported CSV is created in the `csv` directory in `var` folder.
+> **Note**: The exported CSV is created in the `csv` directory in the `var` folder.
 
 ## Usage
 
@@ -204,7 +200,7 @@ chmod 777 -R var/csv
 curl -k -X POST -F 'file=@example.json' http://127.0.0.1/import
 ```
 
-2. To export the CSV is used the following path `/export`. To consume run the message & queues:
+2. To export the CSV is used the following path `/export`. To consume run the messages & queues:
 ```sh
 php bin/console messenger:consume -vv
 ```
