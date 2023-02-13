@@ -1,0 +1,87 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/object1609878110.json",
+    "title": "Products",
+    "type": "array",
+    "default": [],
+    "items": {
+        "$id": "#root/items",
+        "title": "Product",
+        "type": "object",
+        "required": [
+            "styleNumber",
+            "name",
+            "price",
+            "images"
+        ],
+        "properties": {
+            "styleNumber": {
+                "$id": "#root/items/styleNumber",
+                "title": "StyleNumber",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "ABC|123"
+                ],
+                "pattern": "^.*$"
+            },
+            "name": {
+                "$id": "#root/items/name",
+                "title": "Name",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "T-Shirt"
+                ],
+                "pattern": "^.*$"
+            },
+            "price": {
+                "$id": "#root/items/price",
+                "title": "Price",
+                "type": "object",
+                "required": [
+                    "amount",
+                    "currency"
+                ],
+                "properties": {
+                    "amount": {
+                        "$id": "#root/items/price/amount",
+                        "title": "Amount",
+                        "type": "integer",
+                        "examples": [
+                            1500
+                        ],
+                        "default": 0
+                    },
+                    "currency": {
+                        "$id": "#root/items/price/currency",
+                        "title": "Currency",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                            "USD"
+                        ],
+                        "pattern": "^.*$"
+                    }
+                }
+            },
+            "images": {
+                "$id": "#root/items/images",
+                "title": "Images",
+                "type": "array",
+                "default": [],
+                "items": {
+                    "$id": "#root/items/images/items",
+                    "title": "Image URL",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "https://via.placeholder.com/400x300/4b0082?id=1"
+                    ],
+                    "pattern": "^.*$"
+                }
+            }
+        }
+    }
+}
