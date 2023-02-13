@@ -25,7 +25,7 @@ class ProductRepository extends ServiceEntityRepository
     public function findProductsToSync(): array
     {
         return $this->createQueryBuilder('p')
-            // ->where('p.needSync = 1')
+            ->where('p.needSync = 1')
             ->getQuery()
             ->getResult();
     }
