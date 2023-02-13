@@ -63,13 +63,17 @@ class ProductRepository extends ServiceEntityRepository
             $price->setCurrency($itemPrice['currency']);
             $product->setPrice($price);
 
+            foreach ($product->getImages() as $image) {
+                $product->removeImage($image);
+                $entityManager->persist($image);
+            }
+
             foreach ((array) $item['images'] as $url) {
                 $image = new Image();
                 $image->setUrl($url);
-                $entityManager->persist($image);
                 $product->addImage($image);
+                $entityManager->persist($image);
             }
-
             $entityManager->persist($product);
         }
         $entityManager->flush();
