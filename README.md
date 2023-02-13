@@ -203,7 +203,7 @@ chmod 777 -R var/csv
 * The complaint to **Json-schema** document must be uploaded in `/import`. For example:
 
 ```sh
-curl -k -X POST -F 'file=@example.json' http://127.0.0.1/import
+curl -k -sS -X POST -F 'file=@example.json' http://127.0.0.1/import
 ```
 
 * To export the CSV is used the following path `/export`. To consume run the messages & queues:
