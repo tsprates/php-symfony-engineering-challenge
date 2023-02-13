@@ -172,35 +172,42 @@ For extra credit, you could see about parallelizing the import process so that w
 
 ## Installation
 
-1. The create of the database.
+1. The creation of the database.
+
 ```sh
 php bin/console doctrine:database:create
 ```
 2. To run the migrations:
+
 ```sh
 php bin/console doctrine:migrations:migrate
 ```
 
-> **Note**: You may need to give appropriate permissions.
+> **Warning**: You may need to give appropriate permissions to the database.
+
 ```sh
 chmod 777 var/app.db
 ```
 
 3. To create the `csv` folder for the exported CSV files.
+
 ```sh
 mkdir -p var/csv
 chmod 777 -R var/csv
 ```
+
 > **Note**: The exported CSV is created in the `csv` directory in the `var` folder.
 
 ## Usage
 
-1. The complaint to **Json-schema** must be uploaded in `/import`. For example:
+* The complaint to **Json-schema** document must be uploaded in `/import`. For example:
+
 ```sh
 curl -k -X POST -F 'file=@example.json' http://127.0.0.1/import
 ```
 
-2. To export the CSV is used the following path `/export`. To consume run the messages & queues:
+* To export the CSV is used the following path `/export`. To consume run the messages & queues:
+
 ```sh
 php bin/console messenger:consume -vv
 ```
@@ -208,17 +215,20 @@ php bin/console messenger:consume -vv
 ## Testing
 
 1. Creation of the database for testing.
+
 ```sh
 php bin/console --env=test doctrine:database:create
 php bin/console --env=test doctrine:schema:create
 ```
 
 2. Loading the mocked data for testing.
+
 ```sh
 php bin/console --env=test doctrine:fixtures:load
 ```
 
 3. To run the tests:
+
 ```sh
 php bin/phpunit
 ```
