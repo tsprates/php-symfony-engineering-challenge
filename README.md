@@ -177,7 +177,7 @@ For extra credit, you could see about parallelizing the import process so that w
 ```sh
 php bin/console doctrine:database:create
 ```
-2. To run the migrations:
+2. Run the migrations:
 
 ```sh
 php bin/console doctrine:migrations:migrate
@@ -189,24 +189,24 @@ php bin/console doctrine:migrations:migrate
 chmod 777 var/app.db
 ```
 
-3. To create the `csv` folder for the exported CSV files.
+3. Create the `csv` directory for the exported CSV files.
 
 ```sh
 mkdir -p var/csv
-chmod 777 -R var/csv
+chmod -R 777 var/csv
 ```
 
-> **Note**: The exported CSV is created in the `csv` directory in the `var` folder.
+> **Note**: The `csv` directory for exported CSVs is located in the `var` directory.
 
 ## Usage
 
-* The complaint to **Json-schema** document must be uploaded in `/import`. For example:
+* The complaint to **Json-schema** file must be uploaded in `/import`. For example:
 
 ```sh
-curl -k -sS -X POST -F 'file=@example.json' http://127.0.0.1/import
+curl -k -sS -X POST -F 'file=@example.json' https://127.0.0.1/import
 ```
 
-* To export the CSV is used the following path `/export`. To consume run the messages & queues:
+* To export the CSV is used the following path `/export`. And to consume run the following command for messages and queues:
 
 ```sh
 php bin/console messenger:consume -vv
@@ -227,7 +227,7 @@ php bin/console --env=test doctrine:schema:create
 php bin/console --env=test doctrine:fixtures:load
 ```
 
-3. To run the tests:
+3. Run the tests:
 
 ```sh
 php bin/phpunit
