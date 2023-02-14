@@ -42,7 +42,7 @@ class ProductRepository extends ServiceEntityRepository
 
     public function saveProductsFromArray(array $productArray)
     {
-        $entityManager =  $this->getEntityManager();
+        $entityManager = $this->getEntityManager();
         foreach ($productArray as $item) {
             $item = (array) $item;
             $product = $this->findOneByStyleNumber($item['styleNumber']); // upsert

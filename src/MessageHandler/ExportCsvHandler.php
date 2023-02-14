@@ -3,14 +3,21 @@
 namespace App\MessageHandler;
 
 use App\Message\ExportCsv;
+use League\Csv\Writer;
+use SplObjectStorage;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 final class ExportCsvHandler implements MessageHandlerInterface
 {
     public function __invoke(ExportCsv $message)
     {
-        $csvFileName = sprintf('%s/../../var/csv/products_%s.csv', __DIR__, date('Y-m-d_H-i-s'));
-        $csvFile = fopen($csvFileName, 'w+');
+        $csvPath = sprintf('%s/../../var/csv/products_%s.csv', __DIR__, date('Y-m-d_H-i-s'));
+
+        $writer = Writer::createFromPath($csvPath, 'w+');
+        $writer->setDelimiter(',');
+        $writer->setEnclosure('"');
+        $writer->setNewline("\r\n");
+
         foreach ($message->getProducts() as $product) {
             $images = $product->getImages()->toArray();
             $rows = [
@@ -25,8 +32,7 @@ final class ExportCsvHandler implements MessageHandlerInterface
                     $rows[] = '';
                 }
             }
-            fputcsv($csvFile, $rows);
+            $writer->insertOne($rows);
         }
-        fclose($csvFile);
     }
 }
