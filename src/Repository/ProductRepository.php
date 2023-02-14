@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Image;
 use App\Entity\Price;
 use App\Entity\Product;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -4,7 +4,6 @@ namespace App\MessageHandler;
 
 use App\Message\ExportCsv;
 use League\Csv\Writer;
-use SplObjectStorage;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 final class ExportCsvHandler implements MessageHandlerInterface
