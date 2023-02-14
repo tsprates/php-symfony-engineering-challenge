@@ -27,7 +27,7 @@ class ImportController extends AbstractController
         }
 
         $data = json_decode($file->getContent(), true);
-        
+
         // making complaint with the json-schema
         $data = array_map(
             function ($product) {
@@ -36,7 +36,7 @@ class ImportController extends AbstractController
             },
             $data
         );
- 
+
         $projectDir = $this->getParameter('kernel.project_dir');
         $schemaFilePath = $projectDir . '/config/json-schema.json';
         $schema = json_decode(file_get_contents($schemaFilePath));
@@ -64,13 +64,12 @@ class ImportController extends AbstractController
     {
         $products = $repository->findProductsToSync();
         if (count($products) === 0) {
-            return new JsonResponse(['message' => 'not found any needs to sync'], Response::HTTP_NOT_FOUND);
+            return new JsonResponse(['message' => 'there is no products to be exported'], Response::HTTP_NOT_FOUND);
         }
 
         $bus->dispatch(new ExportCsv($products));
-
         $repository->updateNeedSync($products, false);
 
-        return new JsonResponse(['message' => 'The export process was initiated.'], Response::HTTP_OK);
+        return new JsonResponse(['message' => 'the export was initiated'], Response::HTTP_OK);
     }
 }
