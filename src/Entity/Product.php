@@ -26,12 +26,12 @@ class Product
     private $styleNumber;
 
     /**
-     * @ORM\OneToOne(targetEntity=Price::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Price::class, cascade={"persist", "remove"}, fetch="EAGER")
      */
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="product")
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="product", fetch="EAGER")
      */
     private $images;
 
