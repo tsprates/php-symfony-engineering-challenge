@@ -51,8 +51,8 @@ class ProductRepository extends ServiceEntityRepository
                 $product->setStyleNumber($item['styleNumber']);
                 $product->setNeedSync(false);
             } else {
-                $product->setNeedSync(true);
                 $product->setUpdatedAt(new \DateTime());
+                $product->setNeedSync(true);
             }
 
             $product->setName($item['name']);
