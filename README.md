@@ -172,11 +172,12 @@ For extra credit, you could see about parallelizing the import process so that w
 
 ## Installation
 
-1. The creation of the database.
+1. Create the database of the application.
 
 ```sh
 php bin/console doctrine:database:create
 ```
+
 2. Run the migrations:
 
 ```sh
@@ -200,16 +201,16 @@ chmod -R 777 var/csv
 
 ## Usage
 
-* The complaint to **Json-schema** file must be uploaded in `/import`. For example:
+* The uploaded JSON file must be upload in `/import`. For example:
 
 ```sh
-curl -k -sS -X POST -F 'file=@example.json' https://127.0.0.1/import
+curl -ksS -X POST -F 'file=@example.json' https://127.0.0.1/import
 ```
 
-* To export the CSV is used the following path `/export`. And to consume run the following command for messages and queues:
+* The CSV export is done through the `/export` path. To consume run the following command for messages and queues:
 
 ```sh
-php bin/console messenger:consume -vv
+php bin/console messenger:consume async -vv
 ```
 
 ## Testing
