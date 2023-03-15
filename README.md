@@ -172,6 +172,10 @@ For extra credit, you could see about parallelizing the import process so that w
 
 ## Installation
 
+```sh
+docker-compose up --build
+```
+
 1. Create the database of the application.
 
 ```sh
@@ -199,10 +203,6 @@ docker-compose exec php mkdir -p var/csv && chmod -R 777 var/csv
 > **Note**: The `csv` directory for exported CSVs is located in the `var` directory.
 
 ## Usage
-
-```sh
-docker-compose up --build
-```
 
 * The uploaded JSON file must be upload in `/import`. For example:
 
