@@ -172,17 +172,21 @@ For extra credit, you could see about parallelizing the import process so that w
 
 ## Installation
 
+1. Run the _docker-compose_:
+
 ```sh
 docker-compose up --build
 ```
 
-1. Create the database of the application.
+> **Note**: The following steps must be performed only once.
+
+2. Create the database of the application:
 
 ```sh
 docker-compose exec -it php php bin/console doctrine:database:create
 ```
 
-2. Run the migrations:
+3. Run the migrations:
 
 ```sh
 docker-compose exec -it php php bin/console doctrine:migrations:migrate
@@ -194,13 +198,13 @@ docker-compose exec -it php php bin/console doctrine:migrations:migrate
 docker-compose exec php chmod 777 var/app.db
 ```
 
-3. _Optional_. Create the `csv` directory for the exported CSV files if it doesn't exist.
+4. Create the `csv` directory for the exported CSV files if it doesn't exist.
 
 ```sh
 docker-compose exec php mkdir -p var/csv && chmod -R 777 var/csv
 ```
 
-> **Note**: The `csv` directory for exported CSVs is located in the `var` directory.
+> **Note**: The `csv` directory for exported CSVs is located in the `var` directory in the root of the project.
 
 ## Usage
 
@@ -218,14 +222,14 @@ curl http://localhost:8000/export
 
 ## Testing
 
-1. Creation of the database for testing.
+1. Create the database for testing if it doesn't exist:
 
 ```sh
 docker-compose exec php php bin/console --env=test doctrine:database:create
 docker-compose exec php php bin/console --env=test doctrine:schema:create
 ```
 
-2. Loading the mocked data for testing.
+2. Loading the mocked data for testing:
 
 ```sh
 docker-compose exec php php bin/console --env=test doctrine:fixtures:load
