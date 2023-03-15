@@ -175,42 +175,45 @@ For extra credit, you could see about parallelizing the import process so that w
 1. Create the database of the application.
 
 ```sh
-php bin/console doctrine:database:create
+docker-compose exec -it php php bin/console doctrine:database:create
 ```
 
 2. Run the migrations:
 
 ```sh
-php bin/console doctrine:migrations:migrate
+docker-compose exec -it php php bin/console doctrine:migrations:migrate
 ```
 
 > **Warning**: You may need to give appropriate permissions to the database.
 
 ```sh
-chmod 777 var/app.db
+docker-compose exec php chmod 777 var/app.db
 ```
 
-3. Create the `csv` directory for the exported CSV files.
+3. _Optional_. Create the `csv` directory for the exported CSV files if it doesn't exist.
 
 ```sh
-mkdir -p var/csv
-chmod -R 777 var/csv
+docker-compose exec php mkdir -p var/csv && chmod -R 777 var/csv
 ```
 
 > **Note**: The `csv` directory for exported CSVs is located in the `var` directory.
 
 ## Usage
 
+```sh
+docker-compose up --build
+```
+
 * The uploaded JSON file must be upload in `/import`. For example:
 
 ```sh
-curl -ksS -X POST -F 'file=@example.json' https://127.0.0.1/import
+curl -X POST -F 'file=@example.json' http://localhost:8000/import
 ```
 
-* The CSV export is done through the `/export` path. To consume run the following command for messages and queues:
+* The CSV export is done through the `/export` path located in the `var/csv` directory.
 
 ```sh
-php bin/console messenger:consume async -vv
+curl http://localhost:8000/export
 ```
 
 ## Testing
@@ -218,18 +221,18 @@ php bin/console messenger:consume async -vv
 1. Creation of the database for testing.
 
 ```sh
-php bin/console --env=test doctrine:database:create
-php bin/console --env=test doctrine:schema:create
+docker-compose exec php php bin/console --env=test doctrine:database:create
+docker-compose exec php php bin/console --env=test doctrine:schema:create
 ```
 
 2. Loading the mocked data for testing.
 
 ```sh
-php bin/console --env=test doctrine:fixtures:load
+docker-compose exec php php bin/console --env=test doctrine:fixtures:load
 ```
 
 3. Run the tests:
 
 ```sh
-php bin/phpunit
+docker-compose exec php php bin/phpunit
 ```
