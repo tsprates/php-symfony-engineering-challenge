@@ -201,7 +201,8 @@ docker-compose exec php chmod 777 var/app.db
 4. Create the `csv` directory for the exported CSV files if it doesn't exist.
 
 ```sh
-docker-compose exec php mkdir -p var/csv && chmod -R 777 var/csv
+docker-compose exec php mkdir -p var/csv
+docker-compose exec php chmod -R 777 var/csv
 ```
 
 > **Note**: The `csv` directory for exported CSVs is located in the `var` directory in the root of the project.
