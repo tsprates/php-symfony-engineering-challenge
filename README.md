@@ -180,13 +180,19 @@ docker-compose up --build
 
 > **Note**: The following steps must be performed only once.
 
-2. Create the database of the application:
+2. Install the dependencies:
+
+```sh
+docker-compose exec php composer install 
+```
+
+3. Create the database of the application:
 
 ```sh
 docker-compose exec -it php php bin/console doctrine:database:create
 ```
 
-3. Run the migrations:
+4. Run the migrations:
 
 ```sh
 docker-compose exec -it php php bin/console doctrine:migrations:migrate
@@ -198,14 +204,14 @@ docker-compose exec -it php php bin/console doctrine:migrations:migrate
 docker-compose exec php chmod 777 var/app.db
 ```
 
-4. Create the `csv` directory for the exported CSV files if it doesn't exist.
+5. Create the `csv` directory for the exported CSV files if it doesn't exist.
 
 ```sh
 docker-compose exec php mkdir -p var/csv
 docker-compose exec php chmod -R 777 var/csv
 ```
 
-> **Note**: The `csv` directory for exported CSVs is located in the `var` directory in the root of the project.
+> **Warning**: The `csv` directory for exported CSVs is located in the `var` directory in the root of the project.
 
 ## Usage
 
